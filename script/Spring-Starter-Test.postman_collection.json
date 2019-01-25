@@ -1,0 +1,370 @@
+{
+	"info": {
+		"_postman_id": "d8c83e4c-b400-4bbf-9d0d-28d1f596293b",
+		"name": "Spring Starter Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Letters",
+			"item": [
+				{
+					"name": "Find all letters",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/letters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"letters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add letter",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"letter\":\"b\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/letters",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"letters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete letter",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/letters/b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"letters",
+								"b"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by letter",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/letters/b",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"letters",
+								"b"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "GenericEntity",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8865aaef-4bfd-4ba4-98eb-cc52f35dedcf",
+								"exec": [
+									"pm.test('response should be 201', function() {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"genericEntityId\", jsonData.id);\r",
+									"\r",
+									"pm.environment.set(\"genericEntityJson\", jsonData);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\":\"Generic Entity Test - 1\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "14885e97-20e8-4e91-9952-0f12c330dd0c",
+								"exec": [
+									"pm.test('StatusShouldBe200', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49735ca6-da3d-4079-90ec-87c2adeb6220",
+								"exec": [
+									"pm.test('response should be 200', function() {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"genericEntityJson\", jsonData);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f724350e-9622-4be5-9b41-7894dda61289",
+								"exec": [
+									"var valueEdit = \"Generic Entity Edit - \" + pm.environment.get(\"genericEntityId\");",
+									"pm.environment.set(\"genericEntityValueEdit\", valueEdit);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"id\":\"{{genericEntityId}}\",\n\t\"name\":\"{{genericEntityValueEdit}}\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities/{{genericEntityId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities",
+								"{{genericEntityId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities/{{genericEntityId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities",
+								"{{genericEntityId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "FInd By Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities/search?name=Enti",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities",
+								"search"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Enti"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e32a7792-fe06-4c9c-a182-c65cf7148db0",
+								"exec": [
+									"pm.test('StatusShouldBe200_And_BodyEqualToCreateBody', function() {\r",
+									"    if (pm.response.to.have.status(200)){\r",
+									"        var expected = pm.environment.get(\"genericEntityJson\");\r",
+									"        pm.response.to.have.body(expected);          \r",
+									"    }\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/example/genericentities/{{genericEntityId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"example",
+								"genericentities",
+								"{{genericEntityId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
