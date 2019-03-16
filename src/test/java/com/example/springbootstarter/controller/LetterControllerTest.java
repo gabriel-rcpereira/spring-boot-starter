@@ -3,15 +3,13 @@ package com.example.springbootstarter.controller;
 import com.example.springbootstarter.SpringBootStarterApplication;
 import com.example.springbootstarter.api.model.request.LetterRequest;
 import com.example.springbootstarter.api.service.JsonService;
-import com.example.springbootstarter.model.entity.GenericEntity;
-import com.example.springbootstarter.model.repository.GenericEntityRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -24,7 +22,7 @@ import java.util.Arrays;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
-@RunWith(SpringRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = SpringBootStarterApplication.class)
 @WebAppConfiguration
 public class LetterControllerTest {
